@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# Name:
-# Student number:
+# Name: Felicia van Gastel
+# Student number: 11096187
 """
 This script crawls the IMDB top 250 movies.
 """
