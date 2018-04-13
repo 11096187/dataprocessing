@@ -27,25 +27,28 @@ def extract_tvseries(dom):
     - Runtime (only a number!)
     """
     
+	# create a list for the tvseries
     serieslist = []
 	
+	# extract the lines about the tv series
     series = dom.find_all(class_="lister-item-content")
 	
+	# extract the relevant fields
     for serie in series:
         title = serie.select('h3 > a')[0]
         rating = serie.select('strong')[0]
         genres = serie.select('.genre')[0]
-        actors = serie.select('p. > a')
-        actorlist = []
-        for actor in actors:
-            actorlist.append(actor.get_text())
+        stars = serie.select('p. > a')
+        starlist = []
+        for star in stars:
+            starlist.append(star.get_text())
         runtime = serie.select('.runtime')[0]
-
-        content = [title.get_text(), rating.get_text(), genres.get_text(strip=True), ", ".join(actorlist), runtime.get_text()[:-4]]
 		
+		# extract the text from the html
+        content = [title.get_text(), rating.get_text(), genres.get_text(strip=True), ", ".join(starlist), runtime.get_text()[:-4]]
+		
+		# append the content to the list of tvseries
         serieslist.append(content)
-		
-        print (content)
 
     return serieslist
 
@@ -59,7 +62,6 @@ def save_csv(outfile, tvseries):
 	
     for item in tvseries:
         writer.writerow(item)
-        print(repr(item))
 
 
 def simple_get(url):
