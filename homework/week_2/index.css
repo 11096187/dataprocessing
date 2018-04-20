@@ -1,0 +1,45 @@
+#title {
+    position: absolute;
+    font: 20px Arial, serif;
+    bottom: 570px;
+    left: 415px;
+    width: 800px;
+}
+
+#rawdata {
+    display: none;
+}
+
+#text {
+    display: none;
+}
+
+#avgTempPerDay {
+    position: absolute;
+    bottom: 250px;
+    left: 365px;
+}
+
+#xLines {
+    position: absolute;
+    bottom: 250px;
+    left: 355px;
+}
+
+#xText {
+    position: absolute;
+    bottom: 250px;
+    left: 305px;
+}
+
+#yLines {
+    position: absolute;
+    bottom: 240px;
+    left: 380px;
+}
+
+#yText {
+    position: absolute;
+    bottom: 190px;
+    left: 370px;
+}
