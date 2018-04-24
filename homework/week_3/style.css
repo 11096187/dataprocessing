@@ -1,4 +1,7 @@
-#title {
-    position: absolute;
-    left: 400px;
+#h1 {
+    padding-left: 40px;
+}
+
+#p {
+  padding-left: 40px;
 }
