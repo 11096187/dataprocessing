@@ -1,3 +1,12 @@
+# ConvertCSV2JSON
+# Converts data in csv to json.
+#
+# Name: Felicia van Gastel
+# Student nr: 11096187
+#
+# Data Processing
+# Week 3
+
 import csv
 import json
 
