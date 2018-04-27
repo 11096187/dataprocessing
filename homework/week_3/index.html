@@ -14,13 +14,35 @@
   <h1>Population Amsterdam (NL) 2007-2016.</h1>
   <p>Felicia van Gastel (11096187) - Source: <a href="https://opendata.cbs.nl/statline/#/CBS/nl/dataset/70233NED/table?ts=1524602850748">CBS</a></p>
   <script type="text/javascript">
-      var dataset = [5, 10, 20, 25, 30];
-      d3.select("body").selectAll("p")
-          .data(dataset)
-          .enter()
-          .append("p")
-          .text(function(d) {
-              return d; });
+
+  //Width and height
+  var w = 500;
+  var h = 100;
+  var barPadding = 1;
+
+  var dataset = [5, 10, 23, 46, 32, 34, 23, 12, 5, 3]
+
+  //Create SVG element
+  var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+  svg.selectAll("rect")
+     .data(dataset)
+     .enter()
+     .append("rect")
+     .attr("x", function(d, i) {
+          return i * (w / dataset.length);
+      })
+     .attr("y", function(d) {
+          return h - (d * 4);
+     })
+     .attr("width", w / dataset.length - barPadding)
+     .attr("height", function (d) {
+          return d * 4;
+     });
   </script>
+
 </body>
 </html>
