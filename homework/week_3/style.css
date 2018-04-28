@@ -1,15 +1,25 @@
-h1 {
-    padding-left: 40px;
-    padding-top: 30px;
+body {
+    padding-left: 20px;
+    padding-top: 10px;
+
+}
+/*Rectangle bar class styling*/
+
+.bar {
+  fill: steelblue;
 }
 
-p {
-  padding-left: 40px;
+.bar:hover{
+    fill:brown;
 }
 
-div.bar {
-    display: inline-block;
-    width: 20px;
-    height: 75px;   /* We'll override this later */
-    background-color: teal;
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
