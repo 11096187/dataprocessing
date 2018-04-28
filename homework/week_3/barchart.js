@@ -15,20 +15,20 @@ var margin = {top: 40, right: 40, bottom: 60, left: 80},
 // Set ranges for x and y
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .05)
-    .domain(years);
+    .domain(10);
 
 var y = d3.scale.linear()
     .range([height, 0])
-    .domain([0, d3.max(population)]);
+    .domain([0, 850000]);
 
 // create the axis
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("bottom")
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left");
+    .orient("left")
 
 // initialize tip to create interactivity
 var tip = d3.tip()
@@ -59,12 +59,10 @@ var population = [];
 d3.json("data.json", function(data) {
 
     // Send JSON values into separate arrays
-    for (var i = 0, i < data.length; i++) {
-        years.push(data[i].year);
-        population.push(Number(data[i].population));
+    for (var element = 0; element < data.length; element++) {
+        years.push(data[element].Year);
+        population.push(Number(data[element].Population));
     }
-
-    console.log(data);
 
     // create x axis and labels
     svg.append("g")
@@ -76,7 +74,7 @@ d3.json("data.json", function(data) {
         .attr("class", "year")
         .attr("dx", "-.8em")
         .attr("dy", "-.55em")
-        .attr("transform, rotate(-90)");
+        .attr("transform, rotate(-90)")
         .text("Years");
 
     // create y axis and labels

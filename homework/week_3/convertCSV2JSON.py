@@ -10,16 +10,23 @@
 
 import csv
 import json
+from collections import OrderedDict
 
 csvfile = open("data.csv", "r")
 jsonfile = open("data.json", "w")
 
-fieldnames = ("year", "population")
+fieldnames = ("Year", "Population")
 reader = csv.DictReader(csvfile, fieldnames)
 
+list = []
+
 for row in reader:
-    json.dump(row, jsonfile)
-    jsonfile.write('\n')
+    data = OrderedDict()
+    for element in fieldnames:
+        data[element] = row[element].strip()
+    list.append(data)
+
+json.dump(list, jsonfile)
 
 csvfile.close()
 jsonfile.close()

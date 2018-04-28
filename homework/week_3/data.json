@@ -1,10 +1,1 @@
-{"year": "2007", "population": "  744988.5"}
-{"year": "2008", "population": "  751349.0"}
-{"year": "2009", "population": "  761531.0"}
-{"year": "2010", "population": "  773632.5"}
-{"year": "2011", "population": "  784959.0"}
-{"year": "2012", "population": "  794694.0"}
-{"year": "2013", "population": "  805022.5"}
-{"year": "2014", "population": "  816344.5"}
-{"year": "2015", "population": "  827688.0"}
-{"year": "2016", "population": "  839285.5"}
+[{"Year": "2007", "Population": "744988.5"}, {"Year": "2008", "Population": "751349.0"}, {"Year": "2009", "Population": "761531.0"}, {"Year": "2010", "Population": "773632.5"}, {"Year": "2011", "Population": "784959.0"}, {"Year": "2012", "Population": "794694.0"}, {"Year": "2013", "Population": "805022.5"}, {"Year": "2014", "Population": "816344.5"}, {"Year": "2015", "Population": "827688.0"}, {"Year": "2016", "Population": "839285.5"}]
