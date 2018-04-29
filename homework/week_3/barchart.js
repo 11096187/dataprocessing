@@ -17,21 +17,21 @@ var margin = {top: 40, right: 20, bottom: 30, left: 40},
 
 // Set scale for x and y
 var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .05)
+    .rangeRoundBands([0, width], .05);
 
 var y = d3.scale.linear()
-    .range([height, 0])
+    .range([height, 0]);
 
 // create the axis
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom")
+    .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left")
+    .orient("left");
 
-// initialize tip to create interactivity
+// initialize tip to create interactivity of bars
 var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
