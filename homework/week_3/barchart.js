@@ -12,7 +12,7 @@ var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 900 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
-// Set ranges for x and y
+// Set scale for x and y
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .05)
 
@@ -46,12 +46,6 @@ var svg = d3.select("body").append("svg")
 
 // Call tip
 svg.call(tip);
-
-
-// Create arrays to store data
-var years = [];
-var population = [];
-
 
 // import JSON data file and use data to make bar chart
 d3.json("data.json", function(data) {
