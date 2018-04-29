@@ -8,18 +8,16 @@
 */
 
 // set the right sizes round chart
-var margin = {top: 40, right: 40, bottom: 60, left: 80},
+var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 900 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
 // Set ranges for x and y
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .05)
-    .domain(10);
 
 var y = d3.scale.linear()
     .range([height, 0])
-    .domain([0, 850000]);
 
 // create the axis
 var xAxis = d3.svg.axis()
@@ -58,11 +56,14 @@ var population = [];
 // import JSON data file and use data to make bar chart
 d3.json("data.json", function(data) {
 
+    /*
     // Send JSON values into separate arrays
     for (var element = 0; element < data.length; element++) {
         years.push(data[element].Year);
         population.push(Number(data[element].Population));
-    }
+    } */
+    x.domain(data.map(function(d) { return d.Year; }));
+    y.domain([0, d3.max(data, function(d) { return d.Population; })]);
 
     // create x axis and labels
     svg.append("g")
@@ -74,8 +75,7 @@ d3.json("data.json", function(data) {
         .attr("class", "year")
         .attr("dx", "-.8em")
         .attr("dy", "-.55em")
-        .attr("transform, rotate(-90)")
-        .text("Years");
+        .attr("transform, rotate(-90)");
 
     // create y axis and labels
     svg.append("g")
@@ -83,7 +83,7 @@ d3.json("data.json", function(data) {
         .call(yAxis)
       .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 5)
+        .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("Population");
@@ -91,12 +91,17 @@ d3.json("data.json", function(data) {
     // draw the bars
     svg.selectAll(".bar")
         .data(data)
-    .enter().append("rect")
+      .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d.years); })
+        .attr("x", function(d) { return x(d.Year); })
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.population); })
-        .attr("height", function(d) { return height - y(d.population); })
+        .attr("y", function(d) { return y(d.Population); })
+        .attr("height", function(d) { return height - y(d.Population); })
         .on('mouseover', tip.show) // interactivity of the bars
         .on('mouseout', tip.hide);
 });
+
+    function type(d) {
+      d.Population = +d.Population;
+      return d;
+}
