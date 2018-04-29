@@ -33,7 +33,7 @@ var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-      return "<strong>Population:</strong>" + d.population;
+      return "<strong>Population:</strong>" + d.Population;
   });
 
 // create variable for the SVG
@@ -55,13 +55,6 @@ var population = [];
 
 // import JSON data file and use data to make bar chart
 d3.json("data.json", function(data) {
-
-    /*
-    // Send JSON values into separate arrays
-    for (var element = 0; element < data.length; element++) {
-        years.push(data[element].Year);
-        population.push(Number(data[element].Population));
-    } */
     x.domain(data.map(function(d) { return d.Year; }));
     y.domain([0, d3.max(data, function(d) { return d.Population; })]);
 
@@ -100,8 +93,3 @@ d3.json("data.json", function(data) {
         .on('mouseover', tip.show) // interactivity of the bars
         .on('mouseout', tip.hide);
 });
-
-    function type(d) {
-      d.Population = +d.Population;
-      return d;
-}
