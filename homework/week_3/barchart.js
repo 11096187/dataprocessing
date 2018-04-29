@@ -1,10 +1,13 @@
 /*
 * script.js
 *
-* script for a barchart
+* script for barchart using json file.
 *
 * Name: Felicia van Gastel
 * Studentnr: 11096187
+*
+* Data Processing week 3
+* 28 april 2018
 */
 
 // set the right sizes round chart
