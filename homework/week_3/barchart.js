@@ -11,7 +11,7 @@
 */
 
 // set the right sizes round chart
-var margin = {top: 40, right: 20, bottom: 30, left: 40},
+var margin = {top: 40, right: 40, bottom: 30, left: 60},
     width = 900 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
