@@ -11,20 +11,21 @@
 
 window.onload = function() {
 
-  console.log('Yes, you can!')
-};
+  var womenInScience = "http://stats.oecd.org/SDMX-JSON/data/MSTI_PUB/TH_WRXRS.FRA+DEU+KOR+NLD+PRT+GBR/all?startTime=2007&endTime=2015"
+  var consConf = "http://stats.oecd.org/SDMX-JSON/data/HH_DASH/FRA+DEU+KOR+NLD+PRT+GBR.COCONF.A/all?startTime=2007&endTime=2015"
 
-var womenInScience = "http://stats.oecd.org/SDMX-JSON/data/MSTI_PUB/TH_WRXRS.FRA+DEU+KOR+NLD+PRT+GBR/all?startTime=2007&endTime=2015"
-var consConf = "http://stats.oecd.org/SDMX-JSON/data/HH_DASH/FRA+DEU+KOR+NLD+PRT+GBR.COCONF.A/all?startTime=2007&endTime=2015"
+  var q = d3.queue()
+    .defer(d3.request, womenInScience)
+    .defer(d3.request, consConf)
+    .awaitAll(function(error, data){check(error, data)});
 
-d3.queue()
-  .defer(d3.request, womenInScience)
-  .defer(d3.request, consConf)
-  .awaitAll(check);
+    function check(error, response) {
+      if (error) throw error;
 
-function check(error, response) {
-  if (error) throw error;
+    // Use response
+    var dataWomen = JSON.parse(response[0].responseText)
+    var dataConsConf = JSON.parse(response[1].responseText)
 
-  // Use response
-  
+    };
+
 };
