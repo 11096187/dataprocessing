@@ -19,12 +19,25 @@ window.onload = function() {
       .defer(d3.request, consConf)
       .awaitAll(function(error, data){check(error, data)});
 
+  var array = [];
+
   function check(error, response) {
       if (error) throw error;
 
+      console.log(response)
+
       // Use response
-      var dataWomen = JSON.parse(response[0].responseText)
-      var dataConsConf = JSON.parse(response[1].responseText)
+      var data0 = JSON.parse(response[0].responseText)
+      var data1 = JSON.parse(response[1].responseText)
+
+      for (let i = 0; i < 1; i++){
+          for (let j = 0; j < 6; j++){
+              console.log(i + ":" + j);
+              var iets = i + ":" + j;
+              console.log(data0.dataSets[0].series[iets].observations[0][0]);
+              array.push(data0.dataSets[0].series[iets].observations[0][0])
+          }
+      }
 
   };
 
@@ -53,5 +66,19 @@ window.onload = function() {
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.selectAll("circle")
+   .data(array)
+   .enter()
+   .append("circle")
+   .attr("cx", function(d) {
+      return d[0];
+    })
+   .attr("cy", function(d) {
+      return d[1];
+    })
+   .attr("r", 5);
+
+   console.log(array);
 
 };
