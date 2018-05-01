@@ -35,7 +35,7 @@ window.onload = function() {
               console.log(i + ":" + j);
               var iets = i + ":" + j;
               console.log(data0.dataSets[0].series[iets].observations[0][0]);
-              array.push(data0.dataSets[0].series[iets].observations[0][0])
+              array.push(data0.dataSets[0].series[iets].observations[0][0]);
           }
       }
 
