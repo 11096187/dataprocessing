@@ -13,7 +13,7 @@
 */
 
 // set up margin
-var margin = {top: 20, right: 80, bottom: 30, left: 80},
+var margin = {top: 20, right: 150, bottom: 30, left: 80},
 width = 1000 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
 
@@ -183,20 +183,21 @@ function addLegend(data){
       .style("fill", color);
 
     legend.append("text")
-      .attr("x", width - 5)
+      .attr("x", width + 25)
       .attr("y", 9)
       .attr("dy", ".35em")
-      .style("text-anchor", "end")
+      .style("text-anchor", "start")
       .text(function(d) { return d; });
 };
 
 function updateChart(data){
 
-  // update axis
+  // update x axis
   var x = d3.scale.linear()
       .range([0, width]);
   x.domain(d3.extent(data, function(d) { return d.income; })).nice();
 
+  // update y axis
   var y = d3.scale.linear()
       .range([height, 0]);
   y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice();
@@ -211,15 +212,15 @@ function updateChart(data){
     .attr("r", 8)
     .style("fill", function(d) { return color(d.country); })
 
-    // update x axis
-    svg.select("axis")
-        .transition()
-        .duration(1000)
-        .call(xAxis)
+  // update x axis
+  svg.select("axis")
+      .transition()
+      .duration(1000)
+      .call(xAxis)
 
-    // update y axis
-    svg.select("axis")
-        .transition()
-        .duration(100)
-        .call(yAxis)
+  // update y axis
+  svg.select("axis")
+      .transition()
+      .duration(100)
+      .call(yAxis)
 };
