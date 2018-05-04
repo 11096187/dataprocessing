@@ -42,6 +42,11 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
+// create lists for years 2000 and 2014
+var data2000 = [];
+var data2014 = [];
+var data = data2000;
+
 window.onload = function() {
 
   // requesting 4 different datasets instead of 1, so I can manage the data better
@@ -59,10 +64,6 @@ window.onload = function() {
       .defer(d3.request, income2000)
       .defer(d3.request, income2014)
       .awaitAll(function(error, data){getData(error, data)});
-
-  // create lists for years 2000 and 2014
-  var data2000 = [];
-  var data2014 = [];
 
   var countriesAmount = 10;
 
@@ -100,17 +101,35 @@ window.onload = function() {
           // Push city object to data dictionary
           data2014.push(object2014);
 
-        };
+      };
+
       // call function to make the scatterplot
-      makeScatter(data2000);
+      makeScatter(data);
       };
 };
 
-function makeScatter(data2000){
+// update chart
+d3.selectAll(".year")
+  .on("click", function(){
+
+    // get data for selected year
+    var value = this.getAttribute("value");
+
+    if (value == "2000"){
+        data = data2000
+    };
+    if (value == "2014"){
+        data = data2014
+    };
+    updateChart(data);
+});
+
+
+function makeScatter(data){
 
     // set x and y domain
-    x.domain(d3.extent(data2000, function(d) { return d.income; })).nice();
-    y.domain(d3.extent(data2000, function(d) { return d.lifeExp; })).nice();
+    x.domain(d3.extent(data, function(d) { return d.income; })).nice();
+    y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice();
 
     // create x axis
     svg.append("g")
@@ -122,7 +141,7 @@ function makeScatter(data2000){
         .attr("x", width)
         .attr("y", -6)
         .style("text-anchor", "end")
-        .text("Income per capita");
+        .text("Income per capita (US Dollar)");
 
     // create y axis
     svg.append("g")
@@ -131,26 +150,25 @@ function makeScatter(data2000){
       .append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
-        .attr("y", 6)
+        .attr("y",- 60)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Life expectancy")
+        .text("Life expectancy at birth (Years)")
 
     // create the dots
     svg.selectAll(".dot")
-        .data(data2000)
+        .data(data)
       .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", 3.5)
+        .attr("r", 8)
         .attr("cx", function(d) { return x(d.income); })
         .attr("cy", function(d) { return y(d.lifeExp); })
-        // .style("fill", color);
         .style("fill", function(d) { return color(d.country); })
 
-    addLegend(data2000);
+    addLegend(data);
 };
 
-function addLegend(data2000){
+function addLegend(data){
 
     var legend = svg.selectAll(".legend")
         .data(color.domain())
@@ -159,15 +177,49 @@ function addLegend(data2000){
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
     legend.append("rect")
-      .attr("x", width - 18)
+      .attr("x", width)
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", color);
 
     legend.append("text")
-      .attr("x", width - 24)
+      .attr("x", width - 5)
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d; });
+};
+
+function updateChart(data){
+
+  // update axis
+  var x = d3.scale.linear()
+      .range([0, width]);
+  x.domain(d3.extent(data, function(d) { return d.income; })).nice();
+
+  var y = d3.scale.linear()
+      .range([height, 0]);
+  y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice();
+
+  // update scatterplot
+  svg.selectAll("circle")
+    .data(data)
+    .transition()
+    .duration(1000)
+    .attr("cx", function(d) { return x(d.income); })
+    .attr("cy", function(d) { return y(d.lifeExp); })
+    .attr("r", 8)
+    .style("fill", function(d) { return color(d.country); })
+
+    // update x axis
+    svg.select("axis")
+        .transition()
+        .duration(1000)
+        .call(xAxis)
+
+    // update y axis
+    svg.select("axis")
+        .transition()
+        .duration(100)
+        .call(yAxis)
 };
