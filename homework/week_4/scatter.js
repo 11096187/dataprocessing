@@ -3,7 +3,7 @@
 
 /*
 * Scatter.js
-* Contains script for scatterplot.
+* Script for a scatterplot.
 *
 * Name: Felicia van Gastel
 * Studentnr: 11096187
@@ -11,6 +11,36 @@
 * Data Processing week 4
 * 4 april 2018
 */
+
+// set up margin
+var margin = {top: 20, right: 80, bottom: 30, left: 80},
+width = 1000 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
+
+// create svg
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category10();
+
+// scale x axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+// scale y axis
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
 
 window.onload = function() {
 
@@ -30,6 +60,7 @@ window.onload = function() {
       .defer(d3.request, income2014)
       .awaitAll(function(error, data){getData(error, data)});
 
+  // create lists for years 2000 and 2014
   var data2000 = [];
   var data2014 = [];
 
@@ -44,11 +75,6 @@ window.onload = function() {
       var income2000Data = JSON.parse(response[2].responseText)
       var income2014Data = JSON.parse(response[3].responseText)
 
-      console.log(lifeExp2000Data)
-      console.log(lifeExp2014Data)
-      console.log(income2000Data)
-      console.log(income2014Data)
-
       // Organise the JSON objects
       for (let i = 0; i < countriesAmount; i++){
 
@@ -56,7 +82,7 @@ window.onload = function() {
 
           // Create object in which a single country's info will be stored for the year 2000
           object2000 = {
-              "name": income2000Data.structure.dimensions.series[0].values[i]["name"],
+              "country": income2000Data.structure.dimensions.series[0].values[i]["name"],
               "income": income2000Data.dataSets[0].series[index].observations[0][0],
               "lifeExp": lifeExp2000Data.dataSets[0].series[index].observations[0][0]
           };
@@ -66,7 +92,7 @@ window.onload = function() {
 
           // Create object in which a single country's info will be stored for the year 2014
           object2014 = {
-              "name": income2000Data.structure.dimensions.series[0].values[i]["name"],
+              "country": income2000Data.structure.dimensions.series[0].values[i]["name"],
               "income": income2014Data.dataSets[0].series[index].observations[0][0],
               "lifeExp": lifeExp2014Data.dataSets[0].series[index].observations[0][0]
           };
@@ -75,102 +101,73 @@ window.onload = function() {
           data2014.push(object2014);
 
         };
-
-      console.log(data2000, data2014);
-
-      // makeScatter(data);
-      // addLegend(data);
-  };
-//
+      // call function to make the scatterplot
+      makeScatter(data2000);
+      };
 };
-//
-// function makeScatter(data){
-//
-//     var margin = {top: 20, right: 20, bottom: 30, left: 80},
-//     width = 960 - margin.left - margin.right,
-//     height = 500 - margin.top - margin.bottom;
-//
-//     // create svg
-//     var svg = d3.select("body").append("svg")
-//         .attr("width", width + margin.left + margin.right)
-//         .attr("height", height + margin.top + margin.bottom)
-//       .append("g")
-//         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-//
-//     var x = d3.scale.linear()
-//         .range([0, width]);
-//
-//     var y = d3.scale.linear()
-//         .range([height, 0]);
-//
-//     var color = d3.scale.category10();
-//
-//     // scale x axis
-//     var xAxis = d3.svg.axis()
-//         .scale(x)
-//         .orient("bottom");
-//
-//     // scale y axis
-//     var yAxis = d3.svg.axis()
-//         .scale(y)
-//         .orient("left");
-//
-//     x.domain(d3.extent(data, function(d) { return d.womenData; })).nice();
-//     y.domain(d3.extent(data, function(d) { return d.consconfData; })).nice();
-//
-//     // create x axis
-//     svg.append("g")
-//         .attr("class", "x axis")
-//         .attr("transform", "translate(0," + height + ")")
-//         .call(xAxis)
-//       .append("text")
-//         .attr("class", "label")
-//         .attr("x", width)
-//         .attr("y", -6)
-//         .style("text-anchor", "end")
-//         .text("Women in science");
-//
-//     // create y axis
-//     svg.append("g")
-//         .attr("class", "y axis")
-//         .call(yAxis)
-//       .append("text")
-//         .attr("class", "label")
-//         .attr("transform", "rotate(-90)")
-//         .attr("y", 6)
-//         .attr("dy", ".71em")
-//         .style("text-anchor", "end")
-//         .text("Consconf")
-//
-//     // create the dots
-//     svg.selectAll(".dot")
-//         .data(data)
-//       .enter().append("circle")
-//         .attr("class", "dot")
-//         .attr("r", 3.5)
-//         .attr("cx", function(d) { return x(d.womenData); })
-//         .attr("cy", function(d) { return y(d.consconfData); })
-//         .style("fill", color);
-//         //.style("fill", function(d) { return color(d.species); });
-// };
 
-// function addLegend(data){
-//     var legend = svg.selectAll(".legend")
-//         .data(color.domain())
-//       .enter().append("g")
-//         .attr("class", "legend")
-//         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-//
-//     legend.append("rect")
-//       .attr("x", width - 18)
-//       .attr("width", 18)
-//       .attr("height", 18)
-//       .style("fill", color);
-//
-//     legend.append("text")
-//       .attr("x", width - 24)
-//       .attr("y", 9)
-//       .attr("dy", ".35em")
-//       .style("text-anchor", "end")
-//       .text(function(d) { return d; });
-// };
+function makeScatter(data2000){
+
+    // set x and y domain
+    x.domain(d3.extent(data2000, function(d) { return d.income; })).nice();
+    y.domain(d3.extent(data2000, function(d) { return d.lifeExp; })).nice();
+
+    // create x axis
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+      .append("text")
+        .attr("class", "label")
+        .attr("x", width)
+        .attr("y", -6)
+        .style("text-anchor", "end")
+        .text("Income per capita");
+
+    // create y axis
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+      .append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Life expectancy")
+
+    // create the dots
+    svg.selectAll(".dot")
+        .data(data2000)
+      .enter().append("circle")
+        .attr("class", "dot")
+        .attr("r", 3.5)
+        .attr("cx", function(d) { return x(d.income); })
+        .attr("cy", function(d) { return y(d.lifeExp); })
+        // .style("fill", color);
+        .style("fill", function(d) { return color(d.country); })
+
+    addLegend(data2000);
+};
+
+function addLegend(data2000){
+
+    var legend = svg.selectAll(".legend")
+        .data(color.domain())
+      .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+    legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+};
