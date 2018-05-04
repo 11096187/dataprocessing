@@ -50,10 +50,10 @@ var data = data2000;
 window.onload = function() {
 
   // requesting 4 different datasets instead of 1, so I can manage the data better
-  var lifeExp2000 = "http://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.LIFE_EXP.VALUE/all?startTime=2000&endTime=2000"
-  var lifeExp2014 = "http://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.LIFE_EXP.VALUE/all?startTime=2014&endTime=2014"
-  var income2000 = "http://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.INCOME_DISP.VALUE/all?startTime=2000&endTime=2000"
-  var income2014 = "http://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.INCOME_DISP.VALUE/all?startTime=2014&endTime=2014"
+  var lifeExp2000 = "https://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.LIFE_EXP.VALUE/all?startTime=2000&endTime=2000"
+  var lifeExp2014 = "https://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.LIFE_EXP.VALUE/all?startTime=2014&endTime=2014"
+  var income2000 = "https://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.INCOME_DISP.VALUE/all?startTime=2000&endTime=2000"
+  var income2014 = "https://stats.oecd.org/SDMX-JSON/data/RWB/FIN+FRA+GRC+HUN+ITA+NLD+PRT+ESP+SWE+GBR.INCOME_DISP.VALUE/all?startTime=2014&endTime=2014"
 
   // link for requesting the same data in 1 dataset:
   //http://stats.oecd.org/SDMX-JSON/data/RWB/BEL+DNK+FIN+FRA+DEU+GRC+HUN+IRL+ITA+NLD+NOR+PRT+ESP+SWE+GBR.INCOME_DISP+LIFE_EXP.VALUE/all?startTime=2000&endTime=2014
