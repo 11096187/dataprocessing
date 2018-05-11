@@ -1,6 +1,3 @@
-
-
-
 /*
 * Scatter.js
 * Script for a scatterplot.
