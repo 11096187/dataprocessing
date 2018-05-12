@@ -1,5 +1,5 @@
-[{
-  "Province": "Groningen" {
+{
+  "Province": "Groningen"{ 
       "popTotal": 583721,
       "pop0_14": 85681,
       "pop15_64": 390636,
@@ -71,4 +71,4 @@
       "pop15_64": 721771,
       "pop65_MAX": 243140,
   }
-}]
+}

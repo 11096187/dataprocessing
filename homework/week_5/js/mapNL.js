@@ -1,5 +1,10 @@
 // http://bl.ocks.org/phil-pedruco/9344373
 
+var nld = [];
+var data2006 = [];
+var data2016 = [];
+var data = data2016;
+
 window.onload = function() {
 
   // queue()
@@ -10,15 +15,15 @@ window.onload = function() {
 
   // function makeMap (error, nld, data2006, data2016) {
 
-d3.queue()
-    .defer(d3.json, "data/nld.json")
-    .defer(d3.json, "data/data2006.json")
-    .defer(d3.json, "data/data2016.json")
-    .await(ready);
+  d3.queue()
+      .defer(d3.json, "data/nld.json")
+      .defer(d3.json, "data/data2006.json")
+      .defer(d3.json, "data/data2016.json")
+      .await(ready);
 
-// WHY IS MY DATA NOT LOADING WHEN I USE THIS?
+  // WHY IS MY DATA NOT LOADING WHEN I USE THIS?
 
-function ready(error, nld, data2006, data2016) {
+  function ready(error, nld, data2006, data2016) {
 
     console.log(nld)
     console.log(data2006)
