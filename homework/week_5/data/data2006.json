@@ -1,74 +1,83 @@
+[{
+    "province": "Groningen",
+    "popTotal": 574042,
+    "pop0_14": 95153,
+    "pop15_64": 394262,
+    "pop65_MAX": 84627
+},
 {
-  "Province": "Groningen" {
-      "popTotal": 574042,
-      "pop0_14": 95153,
-      "pop15_64": 394262,
-      "pop65_MAX": 84627
-  },
-  "Province": "Friesland" {
-      "popTotal": 642230,
-      "pop0_14": 120694,
-      "pop15_64": 424146,
-      "pop65_MAX": 97390
-  },
-  "Province": "Drenthe" {
-      "popTotal": 484481,
-      "pop0_14": 88920,
-      "pop15_64": 316113,
-      "pop65_MAX": 79448,
-  },
-  "Province": "Overijssel" {
-      "popTotal": 1113530,
-      "pop0_14": 215330,
-      "pop15_64": 739098,
-      "pop65_MAX": 159101,
-  },
-  "Province": "Gelderland" {
-      "popTotal": 1975700,
-      "pop0_14": 371095,
-      "pop15_64": 1319610,
-      "pop65_MAX": 285001,
-  },
-  "Province": "Flevoland" {
-      "popTotal": 370656,
-      "pop0_14": 84156,
-      "pop15_64": 253873,
-      "pop65_MAX": 32627,
-  },
-  "Province": "Utrecht" {
-      "popTotal": 1180040,
-      "pop0_14": 225136,
-      "pop15_64": 804455,
-      "pop65_MAX": 150448,
-  },
-  "Province": "Noord-Holland" {
-      "popTotal": 2606580,
-      "pop0_14": 464491,
-      "pop15_64": 1782480,
-      "pop65_MAX": 359609,
-  },
-  "Province": "Zuid-Holland" {
-      "popTotal": 3458880,
-      "pop0_14": 628612,
-      "pop15_64": 2342110,
-      "pop65_MAX": 488150,
-  },
-  "Province": "Zeeland" {
-      "popTotal": 380186,
-      "pop0_14": 68542,
-      "pop15_64": 246650,
-      "pop65_MAX": 64994,
-  },
-  "Province": "Noord-Brabant" {
-      "popTotal": 2415950,
-      "pop0_14": 438487,
-      "pop15_64": 1633420,
-      "pop65_MAX": 344036,
-  },
-  "Province": "Limburg" {
-      "popTotal": 1131940,
-      "pop0_14": 183968,
-      "pop15_64": 762942,
-      "pop65_MAX": 185028,
-  }
-}
+    "province": "Friesland",
+    "popTotal": 642230,
+    "pop0_14": 120694,
+    "pop15_64": 424146,
+    "pop65_MAX": 97390
+},
+{
+    "province": "Drenthe",
+    "popTotal": 484481,
+    "pop0_14": 88920,
+    "pop15_64": 316113,
+    "pop65_MAX": 79448
+},
+{
+    "province": "Overijssel",
+    "popTotal": 1113530,
+    "pop0_14": 215330,
+    "pop15_64": 739098,
+    "pop65_MAX": 159101
+},
+{
+    "province": "Gelderland",
+    "popTotal": 1975700,
+    "pop0_14": 371095,
+    "pop15_64": 1319610,
+    "pop65_MAX": 285001
+},
+{   "province": "Flevoland",
+    "popTotal": 370656,
+    "pop0_14": 84156,
+    "pop15_64": 253873,
+    "pop65_MAX": 32627
+},
+{
+    "province": "Utrecht",
+    "popTotal": 1180040,
+    "pop0_14": 225136,
+    "pop15_64": 804455,
+    "pop65_MAX": 150448
+},
+{
+    "province": "Noord-Holland",
+    "popTotal": 2606580,
+    "pop0_14": 464491,
+    "pop15_64": 1782480,
+    "pop65_MAX": 359609
+},
+{
+    "province": "Zuid-Holland",
+    "popTotal": 3458880,
+    "pop0_14": 628612,
+    "pop15_64": 2342110,
+    "pop65_MAX": 488150
+},
+{
+    "province": "Zeeland",
+    "popTotal": 380186,
+    "pop0_14": 68542,
+    "pop15_64": 246650,
+    "pop65_MAX": 64994
+},
+{
+    "province": "Noord-Brabant",
+    "popTotal": 2415950,
+    "pop0_14": 438487,
+    "pop15_64": 1633420,
+    "pop65_MAX": 344036
+},
+{
+    "province": "Limburg",
+    "popTotal": 1131940,
+    "pop0_14": 183968,
+    "pop15_64": 762942,
+    "pop65_MAX": 185028
+}]

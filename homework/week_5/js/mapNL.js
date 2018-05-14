@@ -1,34 +1,6 @@
 // http://bl.ocks.org/phil-pedruco/9344373
 
-var nld = [];
-var data2006 = [];
-var data2016 = [];
-var data = data2016;
-
-window.onload = function() {
-
-  // queue()
-  //       .defer(d3.json, "data/nld.json")
-  //       .defer(d3.json, "data/data2006.json")
-  //       .defer(d3.json, "data/data2016.json")
-  //       .await(makeMap);
-
-  // function makeMap (error, nld, data2006, data2016) {
-
-  d3.queue()
-      .defer(d3.json, "data/nld.json")
-      .defer(d3.json, "data/data2006.json")
-      .defer(d3.json, "data/data2016.json")
-      .await(ready);
-
-  // WHY IS MY DATA NOT LOADING WHEN I USE THIS?
-
-  function ready(error, nld, data2006, data2016) {
-
-    console.log(nld)
-    console.log(data2006)
-    console.log(data2016)
-
+function makeMap (nld, data) {
     var width = 500,
         height = 500;
 
@@ -50,7 +22,7 @@ window.onload = function() {
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html(function(d) {
-        return "<strong>Population:</strong>"
+        return "<strong>" + d.properties.name + "</strong>" + "<br>" + "Population: " + (d.properties.value)
       });
 
     var l = topojson.feature(nld, nld.objects.subunits).features[3],
@@ -76,5 +48,4 @@ window.onload = function() {
         .call(mapTip)
         .on('mouseover', mapTip.show) // interactivity
         .on('mouseout', mapTip.hide);
-  };
 };
