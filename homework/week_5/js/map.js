@@ -49,10 +49,3 @@ function makeMap (nld, data) {
         .on('mouseover', mapTip.show) // interactivity
         .on('mouseout', mapTip.hide);
 };
-
-// VOOR PIECHART OM OVER OBJECTEN HEEN TE LOOPEN
-var obj = {"name":"tim", "surname", "Meijer"}
-var objectKeys = Object.keys(obj); // => ["name", "surname"]
-objectKeys.forEach(function(d){
-  console.log(obj[d])// => Tim, Meijer
-})
