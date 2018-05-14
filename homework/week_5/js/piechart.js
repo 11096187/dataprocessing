@@ -1,37 +1,50 @@
 //https://bl.ocks.org/mbostock/3887235
 
 function makeChart(data) {
-    var svg = d3.select('body').append('svg'),
-        width = +svg.attr("width"),
-        height = +svg.attr("height"),
-        radius = Math.min(width, height) / 2,
-        g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    var color = d3.scale.ordinal(["#98abc5", "#7b6888", "#a05d56"]);
+  var chartWidth = 400,
+      chartHeight = 400,
+      radius = Math.min(chartWidth, chartHeight) / 2;
 
-    var pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d.population; });
+  var svg = d3.select("body").append("svg")
+      .attr("class", "chart")
+      .attr("width", chartWidth)
+      .attr("height", chartHeight);
 
-    var pathChart = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
+  var  g = svg.append("g").attr("transform", "translate(" + chartWidth / 2 + "," + chartHeight / 2 + ")");
 
-    var label = d3.svg.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 40);
+  var color = d3.scale.ordinal(["#98abc5", "#7b6888", "#a05d56"]);
 
-    var arc = g.selectAll(".arc")
-      .data(pie(data))
-      .enter().append("g")
-        .attr("class", "arc");
+  var pie = d3.layout.pie()
+      .sort(null)
+      .value(function(d) { return d.pop0_14; });
 
-    arc.append("path")
-        .attr("d", pathChart)
-        .attr("fill", function(d) { return color(d.data.age); });
+  var chartPath = d3.svg.arc()
+      .outerRadius(radius - 10)
+      .innerRadius(0);
 
-    arc.append("text")
-        .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
-        .attr("dy", "0.35em")
-        .text(function(d) { return d.data.age; });
+  var label = d3.svg.arc()
+      .outerRadius(radius - 40)
+      .innerRadius(radius - 40);
+
+  var arc = g.selectAll(".arc")
+    .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+  arc.append("path")
+      .attr("d", chartPath)
+      .attr("fill", function(d) { return color(d.pop0_14); });
+
+  arc.append("text")
+      .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
+      .attr("dy", "0.35em")
+      .text(function(d) { return d.pop0_14; });
 };
+
+// VOOR PIECHART OM OVER OBJECTEN HEEN TE LOOPEN
+var obj = {"name":"tim", "surname", "Meijer"}
+var objectKeys = Object.keys(obj); // => ["name", "surname"]
+objectKeys.forEach(function(d){
+  console.log(obj[d])// => Tim, Meijer
+})

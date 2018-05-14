@@ -1,3 +1,12 @@
+/**
+* Felicia van Gastel
+* 11096187
+*
+* main.js
+* beschrijving
+*
+**/
+
 window.onload = function() {
 
   d3.queue()
@@ -8,8 +17,6 @@ window.onload = function() {
 
   function getData(error, data) {
       if (error) throw error;
-
-      console.log(data[0])
 
       nld = data[0];
       data = data[1];
@@ -30,6 +37,7 @@ window.onload = function() {
               }
           }
       }
+
       makeMap(nld, data);
       makeChart(data);
   };
@@ -59,5 +67,31 @@ window.onload = function() {
   // charts linken
   // charts kunnen updaten
   // storytelling
+  // html code checken: alles wat je niet ziet in de head?
+      // COMMENTS
+        // comments ook in css en HTML
+        // consistentie in taal, casing
+        // inhoudelijk iets toevoegen
+        // in head libraries inladen
+      // FORMATTING
+        // witregels, indentatie, spaties rondom operators en variabelen
+      // FLOW
+        // is het pad dat de computer volgt leesbaar?
+        // niet meer nesting dan nodig
+        // geen herhaalde code (maak gebruik van functies!)
+      // IDIOM
+        // zijn data types logisch?
+        // zijn libraries goed benut?
+      // VARIABLES
+        // goede balans tussen parameters en variabelen
+        // variabelen zijn beschrijvend, consistent in casing, goed geschreven
+        // functies definieren binnen andere functies voor bijv create transform
+      // DECOMPOSITIE
+        // code verdelen in verschillende stukken: aparte files, aparte functies
+
+
+// array.ForEach(function(d){
+//     console.log(d)
+// }
 
 };

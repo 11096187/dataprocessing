@@ -1,22 +1,22 @@
 // http://bl.ocks.org/phil-pedruco/9344373
 
 function makeMap (nld, data) {
-    var width = 500,
-        height = 500;
+    var mapWidth = 500,
+        mapHeight = 500;
 
-    var colour = d3.scale.category20();
+    var provinceColor = d3.scale.category20();
 
     var projection = d3.geo.mercator()
         .scale(1)
         .translate([0, 0]);
 
-    var path = d3.geo.path()
+    var mapPath = d3.geo.path()
         .projection(projection);
 
     var svg = d3.select("body").append("svg")
         .attr("class", "map")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", mapWidth)
+        .attr("height", mapHeight);
 
     var mapTip = d3.tip()
       .attr('class', 'd3-tip')
@@ -26,9 +26,9 @@ function makeMap (nld, data) {
       });
 
     var l = topojson.feature(nld, nld.objects.subunits).features[3],
-        b = path.bounds(l),
-        s = .2 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-        t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+        b = mapPath.bounds(l),
+        s = .2 / Math.max((b[1][0] - b[0][0]) / mapWidth, (b[1][1] - b[0][1]) / mapHeight),
+        t = [(mapWidth - s * (b[1][0] + b[0][0])) / 2, (mapHeight - s * (b[1][1] + b[0][1])) / 2];
 
     projection
         .scale(s)
@@ -37,9 +37,9 @@ function makeMap (nld, data) {
     svg.selectAll("path")
         .data(topojson.feature(nld, nld.objects.subunits).features).enter()
         .append("path")
-        .attr("d", path)
+        .attr("d", mapPath)
         .attr("fill", function(d, i) {
-            return colour(i);
+            return provinceColor(i);
         })
         .attr("class", function(d, i) {
             return d.properties.name;
@@ -49,3 +49,10 @@ function makeMap (nld, data) {
         .on('mouseover', mapTip.show) // interactivity
         .on('mouseout', mapTip.hide);
 };
+
+// VOOR PIECHART OM OVER OBJECTEN HEEN TE LOOPEN
+var obj = {"name":"tim", "surname", "Meijer"}
+var objectKeys = Object.keys(obj); // => ["name", "surname"]
+objectKeys.forEach(function(d){
+  console.log(obj[d])// => Tim, Meijer
+})
