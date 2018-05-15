@@ -1,84 +1,204 @@
 [{
     "province": "Groningen",
     "popTotal": 583721,
-    "pop0_14": 85681,
-    "pop15_64": 390636,
-    "pop65_MAX": 107404
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 85681
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 390636
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 107404
+    }]
 },
 {
     "province": "Friesland",
     "popTotal": 646040,
-    "pop0_14": 108750,
-    "pop15_64": 408423,
-    "pop65_MAX": 128867
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 108750
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 408423
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 128867
+    }]
 },
 {
     "province": "Drenthe",
     "popTotal": 488629,
-    "pop0_14": 79186,
-    "pop15_64": 304238,
-    "pop65_MAX": 105205
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 79186
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 304238
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 105205
+    }]
 },
 {
     "province": "Overijssel",
     "popTotal": 1144280,
-    "pop0_14": 201939,
-    "pop15_64": 735136,
-    "pop65_MAX": 207205
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 201939
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 735136
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 207205
+    }]
 },
 {
     "province": "Gelderland",
     "popTotal": 2035350,
-    "pop0_14": 338314,
-    "pop15_64": 1313450,
-    "pop65_MAX": 383590
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 338314
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 1313450
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 383590
+    }]
 },
 {
     "province": "Flevoland",
     "popTotal": 404068,
-    "pop0_14": 80027,
-    "pop15_64": 273956,
-    "pop65_MAX": 50085
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 80027
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 273956
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 50085
+    }]
 },
 {
     "province": "Utrecht",
     "popTotal": 1273610,
-    "pop0_14": 228707,
-    "pop15_64": 842418,
-    "pop65_MAX": 202488
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 228707
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 842418
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 202488
+    }]
 },
 {
     "province": "Noord-Holland",
     "popTotal": 2784850,
-    "pop0_14": 455618,
-    "pop15_64": 1854010,
-    "pop65_MAX": 475229
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 455618
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 1854010
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 475229
+    }]
 },
 {
     "province": "Zuid-Holland",
     "popTotal": 3622300,
-    "pop0_14": 611986,
-    "pop15_64": 2385210,
-    "pop65_MAX": 625110
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 611986
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 2385210
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 625110
+    }]
 },
 {
     "province": "Zeeland",
     "popTotal": 381252,
-    "pop0_14": 60442,
-    "pop15_64": 236343,
-    "pop65_MAX": 84467
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 60442
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 236343
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 84467
+    }]
 },
 {
     "province": "Noord-Brabant",
     "popTotal": 2498750,
-    "pop0_14": 397773,
-    "pop15_64": 1628460,
-    "pop65_MAX": 472518
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 397773
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 1628460
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 472518
+    }]
 },
 {
     "province": "Limburg",
     "popTotal": 1116260,
-    "pop0_14": 151349,
-    "pop15_64": 721771,
-    "pop65_MAX": 243140
+    "popGroups":
+    [{
+        "name": "Population age <15 years",
+        "value": 151349
+    },
+    {
+        "name": "Population age 15-64 years",
+        "value": 721771
+    },
+    {
+        "name": "Population age >64 years",
+        "value": 243140
+    }]
 }]

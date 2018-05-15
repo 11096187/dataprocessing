@@ -13,7 +13,7 @@ function makeMap (nld, data) {
     var mapPath = d3.geo.path()
         .projection(projection);
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select(".map").append("svg")
         .attr("class", "map")
         .attr("width", mapWidth)
         .attr("height", mapHeight);
