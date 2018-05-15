@@ -3,7 +3,7 @@
     "popTotal": 574042,
     "popGroups" :
     [{
-        "name": "Population age 0-14 years",
+        "name": "Population age <15 years",
         "value": 95153
     },
     {
@@ -11,7 +11,7 @@
         "value": 394262
     },
     {
-        "name": "Population age 65 years and up",
+        "name": "Population age >64 years",
         "value": 84627
     }]
 },
@@ -22,15 +22,15 @@
     [{
         "name": "Population age <15 years",
         "value": 120694
-      },
-      {
+    },
+    {
         "name": "Population age 15-64 years",
         "value": 424146
-      },
-      {
+    },
+    {
         "name": "Population age >64 years",
         "value": 97390
-      }]
+    }]
 },
 {
     "province": "Drenthe",
@@ -39,15 +39,15 @@
     [{
         "name": "Population age <15 years",
         "value": 88920
-      },
+    },
     {
         "name": "Population age 15-64 years",
         "value": 316113
-      }
+    },
     {
         "name": "Population age >64 years",
         "value": 79448
-      }]
+    }]
 },
 {
     "province": "Overijssel",
