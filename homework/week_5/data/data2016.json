@@ -51,7 +51,7 @@
 },
 {
     "province": "Overijssel",
-    "popTotal": "1.144.280",
+    "popTotal": "1,144,280",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -187,7 +187,7 @@
 },
 {
     "province": "Limburg",
-    "popTotal": "1.116.260",
+    "popTotal": "1,116,260",
     "popGroups":
     [{
         "name": "Population age <15 years",

@@ -6,3 +6,12 @@
 	color: #fff;
 	border-radius: 1px;
 }
+.axis text {
+    font: 10px sans-serif;
+    color: black;
+}
+.axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}

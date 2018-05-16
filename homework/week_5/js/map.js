@@ -7,10 +7,34 @@
 */
 
 function makeMap (nld, data) {
-    var mapWidth = 500,
-        mapHeight = 500;
+    // var mapWidth = 500,
+    //     mapHeight = 500;
 
-    var provinceColor = d3.scale.category20c();
+    // Define width, height and margins
+    var margin = {top: 10, bottom: 20, left: 175, right: 200},
+        mapHeight = 450 - margin.top - margin.bottom,
+        mapWidth = 825 - margin.left - margin.right,
+        downscale = 0.7;
+
+    //var provinceColor = d3.scale.category20c();
+    var lowColor = "#f9f9f9"
+    var highColor = "#92B558"
+
+    // Push necessary data into array
+    var popArray = [];
+    data.forEach(function(d) {
+        popArray.push(d.popTotal)
+    });
+    console.log(popArray)
+
+    // Get min/max of data to color code map later
+    var minVal = d3.min(popArray);
+    var maxVal = d3.max(popArray);
+    console.log(minVal);
+    console.log(maxVal);
+    var provinceColor = d3.scale.linear()
+        .domain([minVal, maxVal])
+        .range([lowColor, highColor]);
 
     var projection = d3.geo.mercator()
         .scale(1)
@@ -28,7 +52,7 @@ function makeMap (nld, data) {
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html(function(d) {
-        return "<strong>" + d.properties.name + "</strong>" + "<br>" + "Total population: " + (d.properties.value)
+        return "<strong>" + d.properties.name + "</strong>" + "<br>" + "Total population: " + d3.format(",")(d.properties.value)
       });
 
     var l = topojson.feature(nld, nld.objects.subunits).features[3],
@@ -62,4 +86,58 @@ function makeMap (nld, data) {
             var province = d.properties.name;
         		updatePie(province);
         });
+    // Draw the map legend
+    makeLegend(minVal, maxVal, lowColor, highColor);
 };
+
+function makeLegend(minVal, maxVal, lowColor, highColor) {
+
+    var legendWidth = 110, legendHeight = 170;
+
+    var svgLegend = d3.select("svg")
+        .append("svg")
+        .attr("width", legendWidth)
+        .attr("height", legendHeight)
+        .attr("class", "legend");
+
+    var legend = svgLegend.append("defs")
+        .append("svg:linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "100%")
+        .attr("y1", "0%")
+        .attr("x2", "100%")
+        .attr("y2", "100%")
+        .attr("spreadMethod", "pad");
+
+    // Add gradient
+    legend.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", highColor)
+        .attr("stop-opacity", 1);
+
+    legend.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", lowColor)
+        .attr("stop-opacity", 1);
+
+    svgLegend.append("rect")
+        .attr("width", legendWidth - 80)
+        .attr("height", legendHeight)
+        .style("fill", "url(#gradient)")
+        .attr("transform", "translate(10,10)");
+
+    var y = d3.scale.linear()
+        .range([legendHeight, 0])
+        .domain([minVal, maxVal]);
+
+    // var yAxisRight = d3.svg.axis().scale(y1)
+
+    var yAxis = d3.svg.axis().scale(y)
+        .orient("right")
+        .ticks(7);
+
+    svgLegend.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(41,10)")
+        .call(yAxis)
+}
