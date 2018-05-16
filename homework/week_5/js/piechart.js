@@ -10,7 +10,6 @@
 //https://bl.ocks.org/mbostock/3887235
 //http://bl.ocks.org/NPashaP/96447623ef4d342ee09b
 var updatePie;
-var makeLegend;
 
 function makePie(data) {
 
