@@ -10,13 +10,14 @@
 //https://bl.ocks.org/mbostock/3887235
 //http://bl.ocks.org/NPashaP/96447623ef4d342ee09b
 var updatePie;
+var makeLegend;
 
 function makePie(data) {
 
   var w = 300;
   var h = 300;
   var r = h/2;
-  var aColor = d3.scale.category20();
+  var aColor = d3.scale.category10();
 
   // loop over objects
   for (let i = 0; i < 12; i++){
@@ -61,6 +62,7 @@ function makePie(data) {
   //     .attr("text-anchor", "middle")
   //     .text( function(d, i) { return obj[i].value; });
 
+
   function updatePies(province) {
       var pie = d3.layout.pie()
           .value(function(d){return d.value;});
@@ -68,17 +70,17 @@ function makePie(data) {
       document.getElementById("pieTitle").innerHTML = " Population of " + province.bold();
 
       // get data from clicked province
-      var dataNu;
+      var dataNew;
       data.forEach(function(d){
-        if (d.province == province) {
-          dataNu = d.popGroups;
+          if (d.province == province) {
+              dataNew = d.popGroups;
         }
       })
-      console.log(dataNu);
+      console.log(dataNew);
       // getPopulationValues(province);
 
       d3.select(".pie").select("svg").selectAll("path") //path
-          .data(pie(dataNu)).transition().duration(500)
+          .data(pie(dataNew)).transition().duration(500)
           .attrTween("d", arcTween);
 
       // Store the displayed angles in _current.
@@ -88,7 +90,7 @@ function makePie(data) {
           var i = d3.interpolate(this._current, a)
           this._current = i(0);
           return function(t) { return arc(i(t)); };
-    }
-};
-updatePie = updatePies;
+      }
+  };
+  updatePie = updatePies;
 };

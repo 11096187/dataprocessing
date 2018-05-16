@@ -10,7 +10,7 @@ function makeMap (nld, data) {
     var mapWidth = 500,
         mapHeight = 500;
 
-    var provinceColor = d3.scale.category20b();
+    var provinceColor = d3.scale.category20c();
 
     var projection = d3.geo.mercator()
         .scale(1)
