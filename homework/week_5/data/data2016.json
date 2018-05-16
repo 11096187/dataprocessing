@@ -1,6 +1,6 @@
 [{
     "province": "Groningen",
-    "popTotal": 583721,
+    "popTotal": "583.721",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -17,7 +17,7 @@
 },
 {
     "province": "Friesland",
-    "popTotal": 646040,
+    "popTotal": "646.040",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -34,7 +34,7 @@
 },
 {
     "province": "Drenthe",
-    "popTotal": 488629,
+    "popTotal": "488.629",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -51,7 +51,7 @@
 },
 {
     "province": "Overijssel",
-    "popTotal": 1144280,
+    "popTotal": "1.144.280",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -68,7 +68,7 @@
 },
 {
     "province": "Gelderland",
-    "popTotal": 2035350,
+    "popTotal": "2.035.350",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -85,7 +85,7 @@
 },
 {
     "province": "Flevoland",
-    "popTotal": 404068,
+    "popTotal": "404.068",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -102,7 +102,7 @@
 },
 {
     "province": "Utrecht",
-    "popTotal": 1273610,
+    "popTotal": "1.273.610",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -119,7 +119,7 @@
 },
 {
     "province": "Noord-Holland",
-    "popTotal": 2784850,
+    "popTotal": "2.784.850",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -136,7 +136,7 @@
 },
 {
     "province": "Zuid-Holland",
-    "popTotal": 3622300,
+    "popTotal": "3.622.300",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -153,7 +153,7 @@
 },
 {
     "province": "Zeeland",
-    "popTotal": 381252,
+    "popTotal": "381.252",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -170,7 +170,7 @@
 },
 {
     "province": "Noord-Brabant",
-    "popTotal": 2498750,
+    "popTotal": "2.498.750",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -187,7 +187,7 @@
 },
 {
     "province": "Limburg",
-    "popTotal": 1116260,
+    "popTotal": "1.116.260",
     "popGroups":
     [{
         "name": "Population age <15 years",

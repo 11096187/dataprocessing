@@ -39,8 +39,8 @@ window.onload = function() {
       }
 
       makeMap(nld, data);
-      makeChart(data);
-  };
+      makePie(data);
+      }
 
 
 
@@ -61,12 +61,9 @@ window.onload = function() {
   // });
 
   // TODO :
-  // pie chart maken
-  // titels toevoegen aan charts
-  // kleuren en legenda toevoegen aan map
-  // charts linken
-  // charts kunnen updaten
-  // storytelling
+  // KLEUREN EN LEGENDA TOEVOEGEN
+  // UPDATE JAAR TOEVOEGEN
+  // STORYTELLING
   // html code checken: alles wat je niet ziet in de head?
       // COMMENTS
         // comments ook in css en HTML

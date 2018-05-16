@@ -1,6 +1,6 @@
 [{
     "province": "Groningen",
-    "popTotal": 574042,
+    "popTotal": "574.042",
     "popGroups" :
     [{
         "name": "Population age <15 years",
@@ -17,7 +17,7 @@
 },
 {
     "province": "Friesland",
-    "popTotal": 642230,
+    "popTotal": "642.230",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -34,7 +34,7 @@
 },
 {
     "province": "Drenthe",
-    "popTotal": 484481,
+    "popTotal": "484.481",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -51,7 +51,7 @@
 },
 {
     "province": "Overijssel",
-    "popTotal": 1113530,
+    "popTotal": "1.113.530",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -68,7 +68,7 @@
 },
 {
     "province": "Gelderland",
-    "popTotal": 1975700,
+    "popTotal": "1.975.700",
     "popGroups":
     [{
        "name": "Population age <15 years",
@@ -84,7 +84,7 @@
     }]
 },
 {   "province": "Flevoland",
-    "popTotal": 370656,
+    "popTotal": "370.656",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -101,7 +101,7 @@
 },
 {
     "province": "Utrecht",
-    "popTotal": 1180040,
+    "popTotal": "1.180.040",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -118,7 +118,7 @@
 },
 {
     "province": "Noord-Holland",
-    "popTotal": 2606580,
+    "popTotal": "2.606.580",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -135,7 +135,7 @@
 },
 {
     "province": "Zuid-Holland",
-    "popTotal": 3458880,
+    "popTotal": "3.458.880",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -152,7 +152,7 @@
 },
 {
     "province": "Zeeland",
-    "popTotal": 380186,
+    "popTotal": "380.186",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -169,7 +169,7 @@
 },
 {
     "province": "Noord-Brabant",
-    "popTotal": 2415950,
+    "popTotal": "2.415.950",
     "popGroups":
     [{
         "name": "Population age <15 years",
@@ -186,7 +186,7 @@
 },
 {
     "province": "Limburg",
-    "popTotal": 1131940,
+    "popTotal": "1.131.940",
     "popGroups":
     [{
         "name": "Population age <15 years",

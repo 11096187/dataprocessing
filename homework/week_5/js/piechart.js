@@ -1,67 +1,94 @@
+/*
+* Felicia van Gastel
+* 11096187
+*
+* piechart.js
+* script for a piechart
+*
+*/
+
 //https://bl.ocks.org/mbostock/3887235
+//http://bl.ocks.org/NPashaP/96447623ef4d342ee09b
+var updatePie;
 
-function makeChart(data) {
+function makePie(data) {
 
-  var w = 350;
-  var h = 350;
+  var w = 300;
+  var h = 300;
   var r = h/2;
-  var aColor = [
-      'rgb(178, 55, 56)',
-      'rgb(213, 69, 70)',
-      'rgb(230, 125, 126)',
-      'rgb(239, 183, 182)'
-  ]
+  var aColor = d3.scale.category20();
 
-  // var data = [
-  //     {"label":"Colorectale levermetastase (n=336)", "value":74},
-  //     {"label": "Primaire maligne levertumor (n=56)", "value":12},
-  //     {"label":"Levensmetatase van andere origine (n=32)", "value":7},
-  //     {"label":"Beningne levertumor (n=34)", "value":7}
-  // ];
+  // loop over objects
+  for (let i = 0; i < 12; i++){
+      var obj = data[i].popGroups;
+      var objectKeys = Object.keys(obj); // => ["name", "surname"]
+      // objectKeys.forEach(function(d){
+      // });
+  }
 
-  // var obj = data
-  // var objectKeys = Object.keys(obj);
-  // objectKeys.forEach(function(d){
-  //     console.log(obj[d])
-  // })
-
-
-  // VOOR PIECHART OM OVER OBJECTEN HEEN TE LOOPEN
-  var obj = data[0].popGroups;
-  var objectKeys = Object.keys(obj); // => ["name", "surname"]
-  objectKeys.forEach(function(d){
-    console.log(obj[d])// => Tim, Meijer
-  })
-
-  var vis = d3.select('.chart').append("svg:svg")
+  // create svg for pie chart
+  var piesvg = d3.select('.pie').append("svg:svg")
       .data([obj])
       .attr("width", w)
       .attr("height", h)
       .append("svg:g")
       .attr("transform", "translate(" + r + "," + r + ")");
 
-  var pie = d3.layout.pie().value(function(d){return d.value;});
+  // create a function to compute the pie slice angles
+  var pie = d3.layout.pie()
+      .value(function(d){return d.value;});
 
-  // Declare an arc generator function
+  // create function to draw the arcs of the pie slices
   var arc = d3.svg.arc().outerRadius(r);
 
-  // Select paths, use arc generator to draw
-  var arcs = vis.selectAll("g.slice")
+  // select paths, use arc generator to draw
+  var arcs = piesvg.selectAll("g.slice")
       .data(pie).enter()
       .append("svg:g").attr("class", "slice");
   arcs.append("svg:path")
-      .attr("fill", function(d, i){return aColor[i];})
-      .attr("d", function (d) {return arc(d);})
-  ;
+      .attr("fill", function(d, i){ return aColor(i); })
+      .attr("d", function (d) { return arc(d); })
+      .each(function(d) { this._current = d; })
 
-  // Add the text
-  arcs.append("svg:text")
-      .attr("transform", function(d){
-          d.innerRadius = 100; /* Distance of label to the center*/
-          d.outerRadius = r;
-          return "translate(" + arc.centroid(d) + ")";}
-      )
-      .attr("text-anchor", "middle")
-      .text( function(d, i) {return obj[i].value;})
-  ;
+  document.getElementById("pieTitle").innerHTML = " Choose Province!";
+
+  // // add the text
+  // arcs.append("svg:text")
+  //     .attr("transform", function(d){
+  //         d.innerRadius = 100; /* Distance of label to the center*/
+  //         d.outerRadius = r;
+  //         return "translate(" + arc.centroid(d) + ")";})
+  //     .attr("text-anchor", "middle")
+  //     .text( function(d, i) { return obj[i].value; });
+
+  function updatePies(province) {
+      var pie = d3.layout.pie()
+          .value(function(d){return d.value;});
+
+      document.getElementById("pieTitle").innerHTML = " Population of " + province.bold();
+
+      // get data from clicked province
+      var dataNu;
+      data.forEach(function(d){
+        if (d.province == province) {
+          dataNu = d.popGroups;
+        }
+      })
+      console.log(dataNu);
+      // getPopulationValues(province);
+
+      d3.select(".pie").select("svg").selectAll("path") //path
+          .data(pie(dataNu)).transition().duration(500)
+          .attrTween("d", arcTween);
+
+      // Store the displayed angles in _current.
+      // Then, interpolate from _current to the new angles.
+      // During the transition, _current is updated in-place by d3.interpolate.
+      function arcTween(a) {
+          var i = d3.interpolate(this._current, a)
+          this._current = i(0);
+          return function(t) { return arc(i(t)); };
+    }
+};
+updatePie = updatePies;
 };
