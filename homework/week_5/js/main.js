@@ -41,29 +41,13 @@ window.onload = function() {
       makeMap(nld, data);
       makePie(data);
       }
-
-
-
-  // // update year
-  // d3.selectAll(".year")
-  //   .on("click", function(){
-  //
-  //     // get data for selected year
-  //     var value = this.getAttribute("value");
-  //
-  //     if (value == "2000"){
-  //         data = data2000
-  //     };
-  //     if (value == "2014"){
-  //         data = data2014
-  //     };
-  //     updateYear(data);
-  // });
+};
 
   // TODO :
   // KLEUREN EN LEGENDA TOEVOEGEN
-  // UPDATE JAAR TOEVOEGEN
+  // UPDATEFUNCTIE JAAR TOEVOEGEN
   // STORYTELLING
+
   // html code checken: alles wat je niet ziet in de head?
       // COMMENTS
         // comments ook in css en HTML
@@ -90,5 +74,3 @@ window.onload = function() {
 // array.ForEach(function(d){
 //     console.log(d)
 // }
-
-};
