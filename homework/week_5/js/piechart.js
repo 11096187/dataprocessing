@@ -27,10 +27,9 @@ function makePie(data) {
     // set up color palette
     var aColor = d3.scale.category10();
 
-    // loop over objects and store object groups
+    // loop over objects and store data object groups in obj
     for (let i = 0; i < 12; i++){
         var obj = data[i].popGroups;
-        var objectKeys = Object.keys(obj);
     };
 
     // create svg for pie chart
@@ -67,7 +66,7 @@ function makePie(data) {
         .attr("class", "legend")
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-    // append rectangle to legend
+    // append square to legend
     pieLegend.append("rect")
       .attr("x", w)
       .attr("width", 18)
@@ -76,16 +75,16 @@ function makePie(data) {
 
     // append text to legend
     pieLegend.append("text")
-      .attr("x", w + 25)
+      .attr("x", w + 10)
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "start")
-      .text(18, 5, 11);
+      .text(function (d) { return d.name });
 
     // function that will update the pie to the correct province
     function updatePies(province) {
         var pie = d3.layout.pie()
-            .value(function(d){return d.value;});
+            .value( function(d) { return d.value; });
 
         // change title to chosen province
         document.getElementById("pieTitle").innerHTML = " Age groups in " + province.bold();
