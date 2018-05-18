@@ -17,9 +17,9 @@ var updatePie;
 function makePie(data) {
 
     // set up margin for pie chart
-    var margin = {top: 100, bottom: 100, left: 100, right: 100},
+    var margin = {top: 100, bottom: 100, left: 100, right: 200},
         h = 500 - margin.top - margin.bottom,
-        w = 500 - margin.left - margin.right;
+        w = 600 - margin.left - margin.right;
 
     // set up radius for pie
     var r = h/2;
@@ -33,7 +33,7 @@ function makePie(data) {
     };
 
     // create svg for pie chart
-    var piesvg = d3.select('.pie').append("svg:svg")
+    var piesvg = d3.select(".pie").append("svg:svg")
         .data([obj])
         .attr("width", w)
         .attr("height", h)
@@ -51,35 +51,57 @@ function makePie(data) {
     var arcs = piesvg.selectAll("g.slice")
         .data(pie).enter()
         .append("svg:g").attr("class", "slice");
+
     arcs.append("svg:path")
         .attr("fill", function(d, i){ return aColor(i); })
         .attr("d", function (d) { return arc(d); })
-        .each(function(d) { this._current = d; })
+        .each(function(d) { this._current = d; });
 
     // set up initial title for pie chart
     document.getElementById("pieTitle").innerHTML = " Choose Province!";
 
     // set up legend
-    var pieLegend = piesvg.selectAll(".legend")
-        .data([obj])
+    var legend = d3.select("#pieDiv").append("svg")
+      .attr("class", "legend")
+      .attr("width", r + 80)
+      .attr("height", r * 2)
+      .selectAll("g")
+      .data(obj)
       .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-    // append square to legend
-    pieLegend.append("rect")
-      .attr("x", w)
+    legend.append("rect")
       .attr("width", 18)
       .attr("height", 18)
-      .style("fill", aColor);
+      .style("fill", function(d, i) { return aColor(i); });
 
-    // append text to legend
-    pieLegend.append("text")
-      .attr("x", w + 10)
+    legend.append("text")
+      .attr("x", 24)
       .attr("y", 9)
       .attr("dy", ".35em")
-      .style("text-anchor", "start")
-      .text(function (d) { return d.name });
+      .text(function(d) { return d.name; });
+
+    // // set up legend
+    // var pieLegend = piesvg.selectAll(".legend")
+    //     .data([obj])
+    //     .enter().append("g")
+    //     .attr("class", "legend")
+    //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+    //
+    // // append square to legend
+    // pieLegend.append("rect")
+    //   .attr("x", w)
+    //   .attr("width", 18)
+    //   .attr("height", 18)
+    //   .style("fill", function(d) {return aColor} );
+    //
+    // // append text to legend
+    // pieLegend.append("text")
+    //   .attr("x", w - 25)
+    //   .attr("y", 9)
+    //   .attr("dy", ".35em")
+    //   .style("text-anchor", "start")
+    //   .text(function (d) { return d.popGroups.name });
 
     // function that will update the pie to the correct province
     function updatePies(province) {
