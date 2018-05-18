@@ -17,8 +17,8 @@ function makeMap (nld, data) {
         downscale = 0.7;
 
     //var provinceColor = d3.scale.category20c();
-    var lowColor = "#f9f9f9"
-    var highColor = "#92B558"
+    var lowColor = "#c7e9c0"
+    var highColor = "#00441b"
 
     // Push necessary data into array
     var popArray = [];
@@ -70,7 +70,7 @@ function makeMap (nld, data) {
         .append("path")
         .attr("d", mapPath)
         .attr("fill", function(d, i) {
-            return provinceColor(i);
+            return provinceColor(d.properties.value);
         })
         .attr("class", function(d, i) {
             return d.properties.name;
@@ -92,7 +92,7 @@ function makeMap (nld, data) {
 
 function makeLegend(minVal, maxVal, lowColor, highColor) {
 
-    var legendWidth = 110, legendHeight = 170;
+    var legendWidth = 110, legendHeight = 160;
 
     var svgLegend = d3.select("svg")
         .append("svg")
@@ -122,22 +122,22 @@ function makeLegend(minVal, maxVal, lowColor, highColor) {
 
     svgLegend.append("rect")
         .attr("width", legendWidth - 80)
-        .attr("height", legendHeight)
+        .attr("height", legendHeight - 20)
         .style("fill", "url(#gradient)")
         .attr("transform", "translate(10,10)");
 
     var y = d3.scale.linear()
-        .range([legendHeight, 0])
+        .range([legendHeight - 20, 0])
         .domain([minVal, maxVal]);
 
     // var yAxisRight = d3.svg.axis().scale(y1)
 
     var yAxis = d3.svg.axis().scale(y)
         .orient("right")
-        .ticks(7);
+        .ticks(6);
 
     svgLegend.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(41,10)")
+        .attr("transform", "translate(41,11)")
         .call(yAxis)
 }
