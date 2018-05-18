@@ -70,38 +70,18 @@ function makePie(data) {
       .enter().append("g")
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
+    // set up blocks and colors of legend
     legend.append("rect")
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", function(d, i) { return aColor(i); });
 
+    // set up text of legend
     legend.append("text")
       .attr("x", 24)
       .attr("y", 9)
       .attr("dy", ".35em")
       .text(function(d) { return d.name; });
-
-    // // set up legend
-    // var pieLegend = piesvg.selectAll(".legend")
-    //     .data([obj])
-    //     .enter().append("g")
-    //     .attr("class", "legend")
-    //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-    //
-    // // append square to legend
-    // pieLegend.append("rect")
-    //   .attr("x", w)
-    //   .attr("width", 18)
-    //   .attr("height", 18)
-    //   .style("fill", function(d) {return aColor} );
-    //
-    // // append text to legend
-    // pieLegend.append("text")
-    //   .attr("x", w - 25)
-    //   .attr("y", 9)
-    //   .attr("dy", ".35em")
-    //   .style("text-anchor", "start")
-    //   .text(function (d) { return d.popGroups.name });
 
     // function that will update the pie to the correct province
     function updatePies(province) {
