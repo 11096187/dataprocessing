@@ -1,9 +1,11 @@
-// http://bl.ocks.org/phil-pedruco/9344373
 /*
 * Felicia van Gastel
 * 11096187
 *
+* map.js
+* script that makes the map
 *
+* Source: http://bl.ocks.org/phil-pedruco/9344373
 */
 
 function makeMap (nld, data) {

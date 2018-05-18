@@ -7,13 +7,10 @@
 *
 **/
 
+// set up global variables
 var data2006;
 var data2016;
 var data;
-var dataArray = [];
-var dataProvince;
-var popTotal;
-var mapProvince;
 
 // load the 3 json files
 window.onload = function() {
@@ -24,17 +21,20 @@ window.onload = function() {
         .awaitAll(function(error, data){getData(error, data)});
 };
 
-// stores the collected data in global variables
+// stores the collected data in the global variables
 function getData(error, data) {
     if (error) throw error;
 
+    // storing the data with data 2006 as initial data
     nld = data[0];
     data2006 = data[1];
     data2016 = data[2];
     data = data2006;
 
+    // set up initial title for map
     document.getElementById("mapTitle").innerHTML = "Population of Netherlands in year 2006";
 
+    // call functions to make the map and the pie chart
     makeMap(nld, data);
     makePie(data);
 };
@@ -45,6 +45,7 @@ function changeYear(currentYear){
     // store the value from html
     var value = currentYear.value;
 
+    // if value of button is of a certain year, load data of that year
     if (value == "2006"){
         data = data2006
         document.getElementById("mapTitle").innerHTML = "Population of Netherlands in year 2006";
