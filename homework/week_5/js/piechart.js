@@ -9,12 +9,17 @@
 
 //https://bl.ocks.org/mbostock/3887235
 //http://bl.ocks.org/NPashaP/96447623ef4d342ee09b
+
 var updatePie;
 
 function makePie(data) {
 
-  var w = 300;
-  var h = 300;
+  var margin = {top: 100, bottom: 100, left: 100, right: 100},
+      h = 500 - margin.top - margin.bottom,
+      w = 500 - margin.left - margin.right;
+
+  // var w = 250;
+  // var h = 250;
   var r = h/2;
   var aColor = d3.scale.category10();
 
@@ -24,6 +29,8 @@ function makePie(data) {
       var objectKeys = Object.keys(obj); // => ["name", "surname"]
       // objectKeys.forEach(function(d){
       // });
+      console.log(obj);
+      console.log(objectKeys);
   }
 
   // create svg for pie chart
@@ -52,21 +59,32 @@ function makePie(data) {
 
   document.getElementById("pieTitle").innerHTML = " Choose Province!";
 
-  // // add the text
-  // arcs.append("svg:text")
-  //     .attr("transform", function(d){
-  //         d.innerRadius = 100; /* Distance of label to the center*/
-  //         d.outerRadius = r;
-  //         return "translate(" + arc.centroid(d) + ")";})
-  //     .attr("text-anchor", "middle")
-  //     .text( function(d, i) { return obj[i].value; });
-
+  // var pieLegend = piesvg.selectAll(".legend")
+  //     .data([obj])
+  //   .enter().append("g")
+  //     .attr("class", "legend")
+  //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+  //
+  // pieLegend.append("rect")
+  //   .attr("x", w)
+  //   .attr("width", 18)
+  //   .attr("height", 18)
+  //   .style("fill", aColor);
+  //
+  // pieLegend.append("text")
+  //   .attr("x", w + 25)
+  //   .attr("y", 9)
+  //   .attr("dy", ".35em")
+  //   .style("text-anchor", "start")
+  //   .text(18, 5, 11);
 
   function updatePies(province) {
       var pie = d3.layout.pie()
           .value(function(d){return d.value;});
 
-      document.getElementById("pieTitle").innerHTML = " Population of " + province.bold();
+      document.getElementById("pieTitle").innerHTML = " Age groups in " + province.bold();
+
+      console.log(province);
 
       // get data from clicked province
       var dataNew;
@@ -76,7 +94,6 @@ function makePie(data) {
         }
       })
       console.log(dataNew);
-      // getPopulationValues(province);
 
       d3.select(".pie").select("svg").selectAll("path") //path
           .data(pie(dataNew)).transition().duration(500)

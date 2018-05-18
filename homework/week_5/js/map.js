@@ -7,25 +7,40 @@
 */
 
 function makeMap (nld, data) {
-    // var mapWidth = 500,
-    //     mapHeight = 500;
+
+    // iterate over the data file and separate into name and population value
+    for (var i = 0; i < data.length; i++) {
+        var dataProvince = data[i].province;
+        var popTotal = data[i].popTotal;
+
+        // iteratue over the nld data file and store state name in variable
+        for (var j = 1; j < nld.objects.subunits.geometries.length; j++) {
+            var mapProvince = nld.objects.subunits.geometries[j].properties.name;
+
+            // link the population value if province names in the two files match
+            if (dataProvince == mapProvince) {
+                nld.objects.subunits.geometries[j].properties.value = popTotal;
+                break;
+            }
+        }
+    }
 
     // Define width, height and margins
     var margin = {top: 10, bottom: 20, left: 175, right: 200},
         mapHeight = 450 - margin.top - margin.bottom,
-        mapWidth = 825 - margin.left - margin.right,
-        downscale = 0.7;
+        mapWidth = 825 - margin.left - margin.right;
 
     //var provinceColor = d3.scale.category20c();
-    var lowColor = "#c7e9c0"
-    var highColor = "#00441b"
+    var lowColor = "#c7e9c0";
+    var highColor = "#00441b";
 
     // Push necessary data into array
     var popArray = [];
+    popArray.length = 0;
+
     data.forEach(function(d) {
         popArray.push(d.popTotal)
     });
-    console.log(popArray)
 
     // Get min/max of data to color code map later
     var minVal = d3.min(popArray);
@@ -87,10 +102,10 @@ function makeMap (nld, data) {
         		updatePie(province);
         });
     // Draw the map legend
-    makeLegend(minVal, maxVal, lowColor, highColor);
+    mapLegend(minVal, maxVal, lowColor, highColor);
 };
 
-function makeLegend(minVal, maxVal, lowColor, highColor) {
+function mapLegend(minVal, maxVal, lowColor, highColor) {
 
     var legendWidth = 110, legendHeight = 160;
 
@@ -130,8 +145,6 @@ function makeLegend(minVal, maxVal, lowColor, highColor) {
         .range([legendHeight - 20, 0])
         .domain([minVal, maxVal]);
 
-    // var yAxisRight = d3.svg.axis().scale(y1)
-
     var yAxis = d3.svg.axis().scale(y)
         .orient("right")
         .ticks(6);
@@ -140,4 +153,4 @@ function makeLegend(minVal, maxVal, lowColor, highColor) {
         .attr("class", "y axis")
         .attr("transform", "translate(41,11)")
         .call(yAxis)
-}
+};

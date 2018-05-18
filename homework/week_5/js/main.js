@@ -7,6 +7,14 @@
 *
 **/
 
+var data2006;
+var data2016;
+var data;
+var dataArray = [];
+var dataProvince;
+var popTotal;
+var mapProvince;
+
 window.onload = function() {
 
     d3.queue()
@@ -14,53 +22,75 @@ window.onload = function() {
         .defer(d3.json, "data/data2006.json")
         .defer(d3.json, "data/data2016.json")
         .awaitAll(function(error, data){getData(error, data)});
-
-    function getData(error, data) {
-        if (error) throw error;
-
-        nld = data[0];
-        data = data[1];
-
-        // iterate over the data file and separate into name and value
-        for (var i = 0; i < data.length; i++) {
-            var dataProvince = data[i].province;
-            var popTotal = data[i].popTotal;
-
-            // iteratue over the us data file and store state name in variable
-            for (var j = 1; j < nld.objects.subunits.geometries.length; j++) {
-                var mapProvince = nld.objects.subunits.geometries[j].properties.name;
-
-                // link the population value if state names in the two files match
-                if (dataProvince == mapProvince) {
-                    nld.objects.subunits.geometries[j].properties.value = popTotal;
-                    break;
-                }
-            }
-        }
-      makeMap(nld, data);
-      makePie(data);
-    }
 };
 
+function getData(error, data) {
+    if (error) throw error;
+
+    nld = data[0];
+    data2006 = data[1];
+    data2016 = data[2];
+    data = data2006;
+
+    document.getElementById("mapTitle").innerHTML = "Population of Netherlands in year 2006";
+
+    makeMap(nld, data);
+    makePie(data);
+};
+
+
+console.log(data2006);
+console.log(data2016);
+
+
+function changeYear(currentYear){
+
+    var value = currentYear.value;
+
+    console.log(value);
+
+    if (value == "2006"){
+        data = data2006
+        document.getElementById("mapTitle").innerHTML = "Population of Netherlands in year 2006";
+    };
+
+    console.log(data);
+
+    if (value == "2016"){
+        data = data2016
+        document.getElementById("mapTitle").innerHTML = "Population of Netherlands in year 2016";
+    };
+
+    console.log(data);
+
+    d3.select(".map").select("svg").remove();
+    d3.select(".pie").select("svg").remove();
+    makeMap(nld, data);
+    makePie(data);
+    console.log(data);
+};
+
+// // update chart
+// d3.selectAll(".year")
+//   .on("click", function(){
+//
+//     // get data for selected year
+//     var value = this.getAttribute("value");
+//
+//     if (value == "2006"){
+//         data = data[1]
+//     };
+//     if (value == "2016"){
+//         data = data[2]
+//     };
+//     makeMap(nld, data);
+// });
+
   // TODO :
-  // KLEUREN EN LEGENDA TOEVOEGEN
+  // LEGENDA TOEVOEGEN PIECHART
 
-  // UPDATEFUNCTIE JAAR TOEVOEGEN
+  // UPDATEFUNCTIE JAAR WERKEND KRIJGEN
 
-  // STORYTELLING
-      /*
-
-      The following visualization will show information about the population in
-      the provinces of the Netherlands. In the left figure (the map) you can click
-      on a province and the corresponding data will be shown in the right figure (the pie chart).
-      The total population per province for a specified year is visualized in the left figure
-      while the age group distribution per province is shown in the right figure.
-      Different years can be selected using the dropdown button. The default year is 2006.
-      These visualizations can be used to find the province with the highest population,
-      while also comparing the age groups of the population and the difference of these values
-      between the years 2006 and 2016.
-
-      */
 
   // html code checken: alles wat je niet ziet in de head?
       // COMMENTS
