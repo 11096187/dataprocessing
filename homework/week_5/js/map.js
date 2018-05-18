@@ -3,11 +3,12 @@
 * 11096187
 *
 * map.js
-* script that makes the map
+* script that makes the map and legend
 *
-* Source: http://bl.ocks.org/phil-pedruco/9344373
+* source: http://bl.ocks.org/phil-pedruco/9344373
 */
 
+// function that makes the map
 function makeMap (nld, data) {
 
     // iterate over the data file and separate into name and population value
@@ -15,7 +16,7 @@ function makeMap (nld, data) {
         var dataProvince = data[i].province;
         var popTotal = data[i].popTotal;
 
-        // iteratue over the nld data file and store state name in variable
+        // iteratue over the nld data file and store province name in variable
         for (var j = 1; j < nld.objects.subunits.geometries.length; j++) {
             var mapProvince = nld.objects.subunits.geometries[j].properties.name;
 
@@ -27,16 +28,16 @@ function makeMap (nld, data) {
         }
     }
 
-    // Define width, height and margins
+    // define width, height and margins
     var margin = {top: 10, bottom: 20, left: 175, right: 200},
         mapHeight = 450 - margin.top - margin.bottom,
         mapWidth = 825 - margin.left - margin.right;
 
-    //var provinceColor = d3.scale.category20c();
+    // define lowest and highest color for the map
     var lowColor = "#c7e9c0";
     var highColor = "#00441b";
 
-    // Push necessary data into array
+    // push necessary data into array and clean (possible) initial array
     var popArray = [];
     popArray.length = 0;
 
@@ -44,11 +45,11 @@ function makeMap (nld, data) {
         popArray.push(d.popTotal)
     });
 
-    // Get min/max of data to color code map later
+    // get min/max of data to color code map
     var minVal = d3.min(popArray);
     var maxVal = d3.max(popArray);
-    console.log(minVal);
-    console.log(maxVal);
+
+    // use the min and max data to color the provinces in the map
     var provinceColor = d3.scale.linear()
         .domain([minVal, maxVal])
         .range([lowColor, highColor]);
@@ -60,11 +61,13 @@ function makeMap (nld, data) {
     var mapPath = d3.geo.path()
         .projection(projection);
 
+    // set up svg
     var svg = d3.select(".map").append("svg")
         .attr("class", "map")
         .attr("width", mapWidth)
         .attr("height", mapHeight);
 
+    // use tip to show names and values of provinces with interaction
     var mapTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([-10, 0])
@@ -92,31 +95,39 @@ function makeMap (nld, data) {
         .attr("class", function(d, i) {
             return d.properties.name;
         })
-        // create mouse events
+        // call mouse events and interactivity
         .call(mapTip)
         .on("mouseover", mapTip.show)
-         // interactivity
         .on("mouseout", mapTip.hide)
         .on("click", function(d){
             d3.select(".selected").classed("selected", false);
             d3.select(this).classed("selected", true);
+
+            // store the name of the province in variable
             var province = d.properties.name;
+
+            // use this variable in function
         		updatePie(province);
         });
-    // Draw the map legend
+
+    // draw the map legend
     mapLegend(minVal, maxVal, lowColor, highColor);
 };
 
+// function to set up the legend of the map, using values and colors
 function mapLegend(minVal, maxVal, lowColor, highColor) {
 
+    // set up marges for legend
     var legendWidth = 110, legendHeight = 160;
 
+    // place svg for legend
     var svgLegend = d3.select("svg")
         .append("svg")
         .attr("width", legendWidth)
         .attr("height", legendHeight)
         .attr("class", "legend");
 
+    // add gradient
     var legend = svgLegend.append("defs")
         .append("svg:linearGradient")
         .attr("id", "gradient")
@@ -126,7 +137,6 @@ function mapLegend(minVal, maxVal, lowColor, highColor) {
         .attr("y2", "100%")
         .attr("spreadMethod", "pad");
 
-    // Add gradient
     legend.append("stop")
         .attr("offset", "0%")
         .attr("stop-color", highColor)
@@ -137,12 +147,14 @@ function mapLegend(minVal, maxVal, lowColor, highColor) {
         .attr("stop-color", lowColor)
         .attr("stop-opacity", 1);
 
+    // add rectangles
     svgLegend.append("rect")
         .attr("width", legendWidth - 80)
         .attr("height", legendHeight - 20)
         .style("fill", "url(#gradient)")
         .attr("transform", "translate(10,10)");
 
+    // set up y axis
     var y = d3.scale.linear()
         .range([legendHeight - 20, 0])
         .domain([minVal, maxVal]);
