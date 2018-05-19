@@ -58,7 +58,7 @@ function makePie(data) {
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function(d) {
-            return d3.format(",")(d.value) + "<br>" + d3.format("%")(d.value/d3.sum(obj.map(function (v) { return d.value})));
+            return d3.format(",")(d.value) + "<br>" + d3.format("%")(d.value/d3.sum(obj.map(function (v) { return v.value})));
         });
 
     // put color and data into pie
