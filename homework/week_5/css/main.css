@@ -2,3 +2,7 @@ body {
     padding-left: 30px;
     padding-top: 80px;
 }
+.axis text {
+    font: 10px sans-serif;
+    color: black;
+}

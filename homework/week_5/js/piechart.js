@@ -61,11 +61,12 @@ function makePie(data) {
         return "<strong>" + d.name + "</strong>" + "<br>" + d3.format(",")(d.value);
       });
 
-
+    // put color and data into pie
     arcs.append("svg:path")
         .attr("fill", function(d, i){ return aColor(i); })
         .attr("d", function (d) { return arc(d); })
         .each(function(d) { this._current = d; })
+
         // call mouse events and interactivity
         .call(pieTip)
         .on("mouseover", pieTip.show)
@@ -113,7 +114,6 @@ function makePie(data) {
             };
         });
 
-
         // set up the transition of the pie, using actTween
         d3.select(".pie").select("svg").selectAll("path") //path
             .data(pie(dataNew)).transition().duration(500)
@@ -126,7 +126,7 @@ function makePie(data) {
             var i = d3.interpolate(this._current, a)
             this._current = i(0);
             return function(t) { return arc(i(t)); };
-        }
+        };
     };
 
     // makes it able to use the update function in another javascript
