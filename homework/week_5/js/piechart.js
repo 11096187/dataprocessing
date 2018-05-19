@@ -73,7 +73,7 @@ function makePie(data) {
         .on("mouseout", pieTip.hide);
 
     // set up initial title for pie chart
-    document.getElementById("pieTitle").innerHTML = " Choose Province!";
+    document.getElementById("pieTitle").innerHTML = "Click on a province in the map!";
 
     // set up legend
     var legend = d3.select("#pieDiv").append("svg")
