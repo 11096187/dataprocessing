@@ -75,6 +75,7 @@ function makeMap (nld, data) {
         return "<strong>" + d.properties.name + "</strong>" + "<br>" + "Total population: " + d3.format(",")(d.properties.value)
       });
 
+    // create map
     var l = topojson.feature(nld, nld.objects.subunits).features[3],
         b = mapPath.bounds(l),
         s = .2 / Math.max((b[1][0] - b[0][0]) / mapWidth, (b[1][1] - b[0][1]) / mapHeight),
