@@ -69,11 +69,11 @@ function makeMap (nld, data) {
 
     // use tip to show names and values of provinces with interaction
     var mapTip = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([-10, 0])
-      .html(function(d) {
-        return "<strong>" + d.properties.name + "</strong>" + "<br>" + "Total population: " + d3.format(",")(d.properties.value)
-      });
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+          return "<strong>" + d.properties.name + "</strong>" + "<br>" + "Total population: " + d3.format(",")(d.properties.value)
+        });
 
     // create map
     var l = topojson.feature(nld, nld.objects.subunits).features[3],

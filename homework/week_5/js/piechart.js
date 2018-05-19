@@ -55,10 +55,10 @@ function makePie(data) {
 
     // use tip to show names and values of provinces with interaction
     var pieTip = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([-10, 0])
-      .html(function(d) {
-        return d3.format(",")(d.value) + "<br>" + d3.format("%")(d.value/(d3.sum(obj.map(function (v) { return v.value;}))));
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+            return d3.format(",")(d.value) + "<br>" + d3.format("%")(d.value/d3.sum(obj.map(function (v) { return d.value})));
         });
 
     // put color and data into pie
@@ -77,26 +77,26 @@ function makePie(data) {
 
     // set up legend
     var legend = d3.select("#pieDiv").append("svg")
-      .attr("class", "legend")
-      .attr("width", r + 120)
-      .attr("height", r * 2)
-      .selectAll("g")
-      .data(obj)
-      .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+        .attr("class", "legend")
+        .attr("width", r + 120)
+        .attr("height", r * 2)
+        .selectAll("g")
+        .data(obj)
+        .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
     // set up blocks and colors of legend
     legend.append("rect")
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", function(d, i) { return aColor(i); });
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function(d, i) { return aColor(i); });
 
     // set up text of legend
     legend.append("text")
-      .attr("x", 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.name });
+        .attr("x", 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .text(function(d) { return d.name });
 
     // function that will update the pie to the correct province
     function updatePies(province) {
