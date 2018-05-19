@@ -118,7 +118,7 @@ function makeMap (nld, data) {
 function mapLegend(minVal, maxVal, lowColor, highColor) {
 
     // set up marges for legend
-    var legendWidth = 110, legendHeight = 160;
+    var legendWidth = 110, legendHeight = 180;
 
     // place svg for legend
     var svgLegend = d3.select("svg")

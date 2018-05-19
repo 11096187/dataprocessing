@@ -8,6 +8,7 @@
 * sources:
 * https://bl.ocks.org/mbostock/3887235
 * http://bl.ocks.org/NPashaP/96447623ef4d342ee09b
+* https://bl.ocks.org/cflavs/ff1c6005fd7edad32641
 */
 
 // set up global variable to use in main
@@ -17,8 +18,8 @@ var updatePie;
 function makePie(data) {
 
     // set up margin for pie chart
-    var margin = {top: 100, bottom: 100, left: 100, right: 200},
-        h = 500 - margin.top - margin.bottom,
+    var margin = {top: 100, bottom: 250, left: 100, right: 250},
+        h = 600 - margin.top - margin.bottom,
         w = 600 - margin.left - margin.right;
 
     // set up radius for pie
@@ -52,10 +53,23 @@ function makePie(data) {
         .data(pie).enter()
         .append("svg:g").attr("class", "slice");
 
+    // use tip to show names and values of provinces with interaction
+    var pieTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<strong>" + d.name + "</strong>" + "<br>" + d3.format(",")(d.value);
+      });
+
+
     arcs.append("svg:path")
         .attr("fill", function(d, i){ return aColor(i); })
         .attr("d", function (d) { return arc(d); })
-        .each(function(d) { this._current = d; });
+        .each(function(d) { this._current = d; })
+        // call mouse events and interactivity
+        .call(pieTip)
+        .on("mouseover", pieTip.show)
+        .on("mouseout", pieTip.hide);
 
     // set up initial title for pie chart
     document.getElementById("pieTitle").innerHTML = " Choose Province!";
@@ -63,7 +77,7 @@ function makePie(data) {
     // set up legend
     var legend = d3.select("#pieDiv").append("svg")
       .attr("class", "legend")
-      .attr("width", r + 80)
+      .attr("width", r + 120)
       .attr("height", r * 2)
       .selectAll("g")
       .data(obj)
@@ -81,7 +95,7 @@ function makePie(data) {
       .attr("x", 24)
       .attr("y", 9)
       .attr("dy", ".35em")
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.name });
 
     // function that will update the pie to the correct province
     function updatePies(province) {
@@ -98,6 +112,7 @@ function makePie(data) {
                 dataNew = d.popGroups;
             };
         });
+
 
         // set up the transition of the pie, using actTween
         d3.select(".pie").select("svg").selectAll("path") //path
