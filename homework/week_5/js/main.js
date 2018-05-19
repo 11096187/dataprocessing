@@ -39,7 +39,7 @@ function getData(error, data) {
     makePie(data);
 };
 
-// function that will be called when clicked on button with value
+// function that will be called when clicked on a new year
 function changeYear(currentYear){
 
     // store the value from html
